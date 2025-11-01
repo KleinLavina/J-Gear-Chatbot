@@ -61,29 +61,8 @@ html, body {
   }
 }
 
-/* Hide sidebar and show menu icon between 786px and 501px */
-@media (max-width: 600px) and (min-width: 501px) {
-  .sidebar {
-    display: none;
-  }
-
-  .menu-icon {
-    display: block;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1000;
-  }
-
-  .chat {
-    width: 100%;
-  }
-}
-
-/* Extra small screens: only menu icon */
-@media (max-width: 500px) {
+/* Hide the sidebar on smaller screens and let the header menu take over */
+@media (max-width: 600px) {
   .sidebar {
     display: none;
   }

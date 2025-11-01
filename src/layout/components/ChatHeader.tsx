@@ -17,10 +17,11 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
     const handleResize = () => {
       const width = window.innerWidth;
 
-      if (width <= 500) {
+      if (width <= 600) {
         setShowRightSection(true);
       } else {
         setShowRightSection(false);
+        setIsMenuOpen(false);
       }
     };
 
@@ -69,7 +70,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
         </div>
       </div>
 
-      {/* Right Section - Only show when screen is below 500px */}
+      {/* Right Section - Show the compact menu whenever the sidebar is hidden */}
       {showRightSection && (
         <div className="right-section">
           {/* Desktop Options - Hidden since we only show mobile menu */}

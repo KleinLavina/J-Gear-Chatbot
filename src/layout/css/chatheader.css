@@ -263,3 +263,63 @@
     0 12px 24px rgba(29, 78, 216, 0.25),
     0 18px 36px rgba(29, 78, 216, 0.2);
 }
+
+@media (max-width: 600px) {
+  .chat-header {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .left-section {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .title-container {
+    min-width: 0;
+  }
+
+  .chat-title {
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mobile-dropdown {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 360px) {
+  .chat-header {
+    padding: 12px 14px;
+  }
+
+  .left-section {
+    gap: 8px;
+  }
+
+  .avatar-container {
+    width: 38px;
+    height: 38px;
+  }
+
+  .chat-title {
+    font-size: 16px;
+  }
+
+  .online-status {
+    font-size: 11px;
+    gap: 4px;
+  }
+
+  .mobile-dropdown {
+    min-width: 140px;
+  }
+
+  .dropdown-item {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+  }
+}
