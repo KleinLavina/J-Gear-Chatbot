@@ -1,0 +1,104 @@
+/* App Layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 25%; /* normal width */
+  min-width: 50px; /* never smaller than 50px */
+  height: 100%;
+  padding: 20px;
+  background-color: #f0f0f0;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  transition: width 0.3s ease; /* smooth resize */
+}
+
+/* Chat Area */
+.chat {
+  flex: 1;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 20px;
+  transition: width 0.3s ease; /* responsive adjustment */
+}
+
+.menu-icon {
+  display: none; /* default hidden */
+}
+/* Shrink sidebar between 1024px and 787px */
+@media (max-width: 1024px) and (min-width: 601px) {
+  .sidebar {
+    width: 50px;
+    padding-top: 10px;
+  }
+
+  .chat {
+    width: calc(100% - 50px);
+  }
+}
+
+/* Hide sidebar and show menu icon between 786px and 501px */
+@media (max-width: 600px) and (min-width: 501px) {
+  .sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .chat {
+    width: 100%;
+  }
+}
+
+/* Extra small screens: only menu icon */
+@media (max-width: 500px) {
+  .sidebar {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+
+  .chat {
+    width: 100%;
+  }
+}
