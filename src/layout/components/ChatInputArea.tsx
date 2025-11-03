@@ -1,4 +1,9 @@
-import React, { type KeyboardEvent, type ChangeEvent } from "react";
+import React, {
+  useEffect,
+  useState,
+  type KeyboardEvent,
+  type ChangeEvent,
+} from "react";
 import { Send } from "lucide-react";
 
 interface ChatInputAreaProps {
@@ -12,6 +17,30 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
   setInputText,
   handleSend,
 }) => {
+  const [placeholderText, setPlaceholderText] = useState(
+    "Ask me about SJC merchandise, products, pricing, or how to order..."
+  );
+
+  useEffect(() => {
+    const updatePlaceholder = () => {
+      const width = window.innerWidth;
+
+      if (width <= 420) {
+        setPlaceholderText("Ask about items, prices, or orders...");
+        return;
+      }
+
+      setPlaceholderText(
+        "Ask me about SJC merchandise, products, pricing, or how to order..."
+      );
+    };
+
+    updatePlaceholder();
+    window.addEventListener("resize", updatePlaceholder);
+
+    return () => window.removeEventListener("resize", updatePlaceholder);
+  }, []);
+
   const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -27,7 +56,8 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
           setInputText(e.target.value)
         }
         onKeyPress={handleKeyPress}
-        placeholder="Ask me about SJC merchandise, products, pricing, or how to order..."
+        placeholder={placeholderText}
+        aria-label="Chat message input"
         rows={2}
       />
       <button onClick={handleSend} disabled={!inputText.trim()}>
