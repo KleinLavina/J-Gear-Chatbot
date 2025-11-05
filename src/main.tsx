@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import headerAvatar from "./assets/ashbro.png";
 
+// Creates and sets a circular favicon from an image source
 const setCircularFavicon = (src: string) => {
   const image = new Image();
 
