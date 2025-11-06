@@ -8,6 +8,7 @@ const Layout: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState<string>("");
 
+  // Handles opening the FAQs modal
   const handleOpenFAQs = () => {
     setIsModalOpen(true);
   };
