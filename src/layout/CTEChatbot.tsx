@@ -32,6 +32,7 @@ const CTEChatbot: React.FC<CTEChatbotProps> = ({
   >([]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
+  // Scrolls the chat messages to the bottom for better user experience
   const scrollToBottom = () =>
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
 
