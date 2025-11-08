@@ -49,6 +49,7 @@ const CTEChatbot: React.FC<CTEChatbotProps> = ({
     }
   }, [selectedQuestion]);
 
+  // Handles sending a message in the chat
   const handleSend = () => {
     if (!inputText.trim()) return;
 
