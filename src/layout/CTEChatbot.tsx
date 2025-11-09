@@ -78,6 +78,7 @@ const CTEChatbot: React.FC<CTEChatbotProps> = ({
     }, 1500);
   };
 
+  // Handles clicking on suggested replies to auto-fill input
   const handleSuggestionClick = (reply: string) => {
     setInputText(reply);
     handleSend();
