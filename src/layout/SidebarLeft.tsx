@@ -12,6 +12,7 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ onFAQsClick }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
 
+  // Refreshes the page to restart the chat session
   const handleRefresh = () => {
     window.location.reload();
   };
