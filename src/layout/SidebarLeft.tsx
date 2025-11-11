@@ -17,6 +17,7 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ onFAQsClick }) => {
     window.location.reload();
   };
 
+  // Opens the Facebook page in a new tab
   const handleFacebook = () => {
     window.open(
       "https://www.facebook.com/profile.php?id=61578204130888",
