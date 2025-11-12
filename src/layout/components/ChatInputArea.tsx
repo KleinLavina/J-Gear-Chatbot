@@ -41,6 +41,7 @@ const ChatInputArea: React.FC<ChatInputAreaProps> = ({
     return () => window.removeEventListener("resize", updatePlaceholder);
   }, []);
 
+  // Handles keyboard input for sending messages on Enter key press
   const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
