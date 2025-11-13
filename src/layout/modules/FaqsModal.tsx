@@ -18,6 +18,7 @@ const FaqsModal: React.FC<ModalProps> = ({
 }) => {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
 
+// Toggles the visibility of FAQ categories in the modal
   const toggleCategory = (category: string) => {
     setOpenCategory(openCategory === category ? null : category);
   };
