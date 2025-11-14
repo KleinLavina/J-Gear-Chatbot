@@ -24,6 +24,7 @@ const FaqsModal: React.FC<ModalProps> = ({
   };
 
   // Handle question click - send to chat and close modal
+  // Handles clicking on FAQ questions to send them to chat and close modal
   const handleQuestionClick = (question: string) => {
     if (onQuestionClick) {
       onQuestionClick(question);
