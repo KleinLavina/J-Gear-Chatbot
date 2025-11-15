@@ -66,6 +66,7 @@ export interface ChatResponse {
   suggestions: SuggestedReply[];
 }
 
+// Calculates match score between user input and keyword arrays for response selection
 function calculateMatchScore(input: string, keywords: string[]): number {
   let score = 0;
 
