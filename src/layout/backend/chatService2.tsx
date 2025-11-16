@@ -84,6 +84,7 @@ function calculateMatchScore(input: string, keywords: string[]): number {
   return score;
 }
 
+// Main function that processes user input and returns appropriate chatbot response with suggestions
 export function getMerchandiseResponse(userInput: string): ChatResponse {
   const input = userInput
     .toLowerCase()
