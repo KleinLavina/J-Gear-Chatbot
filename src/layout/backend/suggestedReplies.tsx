@@ -178,6 +178,7 @@ export const contextBasedSuggestions: Record<string, SuggestedReply[]> = {
 };
 
 // Helper function to get suggestions with fallback
+// Helper function to get context-based suggestions with fallback to general suggestions
 export const getContextSuggestions = (context: string): SuggestedReply[] => {
   return contextBasedSuggestions[context] || contextBasedSuggestions.general;
 };
