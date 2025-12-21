@@ -14,7 +14,7 @@ The chatbot assists users by answering frequently asked questions related to **p
 
 ## 🖼️ Interface Preview
 
-![J-Gear Assistant Chatbot Interface](<img width="1899" height="860" alt="image" src="https://github.com/user-attachments/assets/665bcc6b-850f-407f-94b7-01d9fbef30cd" />)
+![J-Gear Assistant Chatbot Interface](./assets/j-gear-chatbot-preview.png)
 
 > *Modern, responsive chat interface designed for easy user interaction.*
 
