@@ -20,7 +20,7 @@ const CTEChatbot: React.FC<CTEChatbotProps> = ({
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "Hello! 👋 Welcome to Tatak Josephinian - Official SJC Merchandise Store!\n\nI'm here to help you with all your SJC merchandise needs. What can I help you find today? 🛍️",
+      text: "Hello! Welcome to Tatak Josephinian — the Official SJC Merchandise Store.\n\nI'm here to help with anything you need. What can I help you find today?",
       isBot: true,
       timestamp: new Date(),
     },

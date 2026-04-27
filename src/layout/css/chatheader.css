@@ -1,69 +1,38 @@
 .chat-header {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  color: white;
-  padding: 16px 20px;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 12px 12px 0 0;
+  background: var(--surface);
+  color: var(--text);
+  padding: 14px 18px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   flex-shrink: 0;
-  height: auto;
-  margin-top: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-
-  /* Enhanced 3D box shadow with blue tones */
-  box-shadow: 
-    0 4px 8px rgba(29, 78, 216, 0.25),
-    0 8px 16px rgba(29, 78, 216, 0.2),
-    0 12px 24px rgba(29, 78, 216, 0.15);
-  
-  /* Subtle border for depth */
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.chat-icon {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 24px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.chat-icon:hover {
-  color: #ffffff;
-  transform: scale(1.25);
-  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3));
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border);
 }
 
 .left-section {
   display: flex;
   align-items: center;
   gap: 12px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  min-width: 0;
 }
 
-.left-section:hover {
-  transform: translateX(2px);
-}
-
-/* Fixed Avatar Container */
 .avatar-container {
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
-  box-shadow: 0 4px 8px rgba(29, 78, 216, 0.2);
-  overflow: hidden; /* Important: prevents image overflow */
+  background: var(--surface-soft);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px var(--secondary-soft);
 }
 
-/* Fixed Chat Avatar */
 .chat-avatar {
   display: flex;
   align-items: center;
@@ -71,255 +40,131 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: none;
-  transition: all 0.3s ease;
 }
 
-.chat-avatar:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(29, 78, 216, 0.3);
-}
-
-/* Fixed Image Styling */
 .chat-avatar img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  object-fit: cover; /* This ensures the image fills the container without distortion */
-  object-position: center; /* Centers the image */
+  object-fit: cover;
   display: block;
-  margin: 0;
-  padding: 0;
-  border: none;
 }
 
-/* Title container with name and online status */
 .title-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
+  min-width: 0;
 }
 
 .chat-title {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .online-status {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--muted);
   display: flex;
   align-items: center;
   gap: 6px;
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
 }
 
 .online-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  background: var(--accent);
   display: inline-block;
-  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.3);
-  animation: pulse 2s infinite;
-}
-
-/* Online indicator dot */
-.online-indicator {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 12px;
-  height: 12px;
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
-  border: 2px solid #2563eb;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 3px var(--accent-soft);
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
-/* Right Section */
+/* Right section / mobile menu */
 .right-section {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 8px;
 }
 
-/* Desktop Options - Hidden since we're using React logic */
 .desktop-options {
-  display: none; /* Hidden because we only show mobile menu */
+  display: none;
 }
 
-/* Mobile Menu */
 .mobile-menu {
-  display: block; /* Always visible when right-section is shown */
   position: relative;
 }
 
 .menu-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  width: 38px;
+  height: 38px;
+  background: var(--surface-soft);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .menu-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 
-/* Mobile Dropdown */
 .mobile-dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   right: 0;
-  margin-top: 8px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 
-    0 4px 8px rgba(29, 78, 216, 0.25),
-    0 8px 16px rgba(29, 78, 216, 0.2),
-    0 12px 24px rgba(29, 78, 216, 0.15);
-  min-width: 150px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 180px;
   z-index: 1000;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
 }
 
 .dropdown-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
   padding: 12px 16px;
-  border: none;
-  background: white;
-  color: #1d4ed8;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
   font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .dropdown-item:hover {
-  background: #f0f4ff;
-  color: #2563eb;
-  transform: translateX(2px);
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 
 .dropdown-item:not(:last-child) {
-  border-bottom: 1px solid #f0f0f0;
-}
-
-/* Additional status styles */
-.offline-indicator {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-}
-
-.idle-indicator {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-}
-
-/* Smooth transitions for all elements */
-.chat-header * {
-  transition: all 0.3s ease;
-}
-
-/* Optional: Add a subtle glow effect on hover for the entire header */
-.chat-header:hover {
-  box-shadow: 
-    0 6px 12px rgba(29, 78, 216, 0.3),
-    0 12px 24px rgba(29, 78, 216, 0.25),
-    0 18px 36px rgba(29, 78, 216, 0.2);
+  border-bottom: 1px solid var(--border);
 }
 
 @media (max-width: 600px) {
   .chat-header {
-    padding: 14px 16px;
-    gap: 12px;
-  }
-
-  .left-section {
-    min-width: 0;
-    flex: 1;
-  }
-
-  .title-container {
-    min-width: 0;
-  }
-
-  .chat-title {
-    font-size: 18px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .mobile-dropdown {
-    min-width: 160px;
-  }
-}
-
-@media (max-width: 360px) {
-  .chat-header {
     padding: 12px 14px;
+    border-radius: 0;
   }
-
-  .left-section {
-    gap: 8px;
-  }
-
-  .avatar-container {
-    width: 38px;
-    height: 38px;
-  }
-
-  .chat-title {
-    font-size: 16px;
-  }
-
-  .online-status {
-    font-size: 11px;
-    gap: 4px;
-  }
-
-  .mobile-dropdown {
-    min-width: 140px;
-  }
-
-  .dropdown-item {
-    padding: 10px 12px;
-    font-size: 0.82rem;
-  }
+  .chat-title { font-size: 15px; }
+  .avatar-container { width: 38px; height: 38px; }
 }

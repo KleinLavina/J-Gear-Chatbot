@@ -1,323 +1,278 @@
+/* === Sidebar (Left) === */
 .sidebar {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 25%;
-  background-color: #f0f0f0;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  width: 260px;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
   overflow: visible;
-  transition: width 0.3s ease;
+  transition: width 0.25s ease;
+  border: none;
 }
 
 .sidebar.collapsed {
-  width: 50px;
-  padding-top: 40px;
+  width: 64px;
 }
 
 .sidebar-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow-y: visible; /* scroll inner content */
-  padding-top: 30px;
+  padding: 16px 14px;
+  gap: 14px;
 }
 
 .sidebar.collapsed .sidebar-container {
-  padding: 10px 5px;
+  padding: 16px 8px;
+  align-items: center;
 }
 
-.menu-icon {
-  background-color: white;
-  color: black;
-  padding: 4px 6px;
-  border-radius: 6px;
-  cursor: pointer;
-  opacity: 0.4;
-  font-size: 1.5rem;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.3s ease; /* smooth hover transition */
-}
-
-.menu-icon:hover {
-  opacity: 1;
-}
-
-
-.sidebar.expanded {
-  width: 25%;
-  padding: 20px;
-}
-
-.toggle-sidebar {
-  background: none;
-  width:auto;
-  margin:2px;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 10px;
-  font-size: 1rem;
-  padding: 5px;
-  border-radius: 5px;
-  transition: all 0.2s ease;
-  outline: none; /* add this to remove default focus */
-}
-
+/* Toggle button - sleek pill */
 .toggle-btn {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   width: 100%;
-  font-size: 1rem;
-   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 8px 16px; /* Reduced padding */
-  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-  outline: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-soft);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .toggle-btn:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  transform: translateY(-1px);
-  outline: none;
-}
-.toggle-btn:focus{
-  outline:none
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 
-
-
-/* Hover effect */
-.toggle-sidebar:hover {
-  background-color: #0074d9; /* subtle blue background */
-  color: #fff;                /* white text/icon on hover */
-  transform: scale(1.1);      /* slight zoom effect */
+.sidebar.collapsed .toggle-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
 }
 
+/* Brand */
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
 
 .sidebar-top .logo {
-  display: flex;              /* Enable flexbox */
-  align-items: center;        /* Align vertically center */
-  justify-content: center;    /* Keep them centered horizontally */
-  gap: 8px;                   /* Space between logo and text */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 4px 6px;
   font-weight: 700;
-  margin-bottom: 15px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 18px;
-  color: #1f2937;
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+.sidebar.collapsed .sidebar-top .logo {
+  justify-content: center;
+  margin: 4px 0;
 }
 
 .sidebar-top .logo img {
-  height: 70px; /* Adjust so it fits with text */
+  height: 32px;
+  width: 32px;
   border-radius: 50%;
-  width: auto;
+  object-fit: cover;
+  background: var(--bg);
 }
 
+/* Refresh chat - primary accent button (skinned to theme) */
+.icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
-/* Ask a Question Button */
 .new-chat {
   width: 100%;
-  border: none;
-  padding: 10px 0; /* Reduced padding */
-  border-radius: 18px;
-  cursor: pointer;
-  color: white;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.3s ease;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--primary);
+  color: #fff;
   font-weight: 600;
-  font-size: 13px; /* Smaller font */
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  margin: 5px 0; /* Reduced margin */
-  outline:none;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  transition: background 0.2s ease, transform 0.15s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 6px 14px rgba(238, 94, 32, 0.18);
 }
 
 .new-chat:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  transform: translateY(-1px);
-  outline:none;
+  background: var(--primary-hover);
+  box-shadow: 0 8px 18px rgba(238, 94, 32, 0.22);
 }
-.new-chat:focus{
-  outline:none;
+
+.new-chat:active {
+  transform: translateY(1px);
 }
-.new-chat.expanded-btn,
+
 .new-chat.collapsed-btn {
-  padding: 8px; /* Reduced padding */
-  font-size: 0.9rem;
-  border-radius: 18px;
-  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
 }
 
-.new-chat.expanded-btn:hover,
-.new-chat.collapsed-btn:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  transform: scale(0.96);
+/* Nav items */
+.sidebar-menu {
+  flex: 1;
+  margin-top: 4px;
 }
-
-
 
 .sidebar-menu ul {
   list-style: none;
-  overflow: visible;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .sidebar-menu li {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 8px 12px; /* Reduced padding */
-  margin: 6px 0; /* Reduced margin */
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 10px;
-  color: #64748b;
-  font-weight: 500;
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-  font-size: 18px; /* Smaller font */
-}
-
-.sidebar-menu li:hover {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  transform: translateX(2px);
 }
 
 .sidebar.collapsed .sidebar-menu li {
   justify-content: center;
-  padding: 8px;
-  margin: 4px 0;
 }
 
-.sidebar.collapsed .sidebar-menu .menu-text {
+/* Collapsed: icon-only button with tooltip */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--muted);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.icon-button:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.icon-button .icon {
+  font-size: 18px;
+}
+
+/* Expanded: text is the trigger - large hitbox, no wrapper */
+.sidebar:not(.collapsed) .sidebar-menu li .icon-wrapper {
   display: none;
 }
 
-.icon {
-  font-size: 1.1rem; /* Smaller icons */
-  width: 20px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.sidebar-menu li:hover .icon {
-  transform: scale(1.08);
-}
-
-/* Facebook icon specific styling */
-.icon-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+.text-button {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: inherit;
-  transition: all 0.3s ease;
-}
-
-.text-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  transition: all 0.3s ease;
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-  font-size: 18px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
   font-weight: 500;
+  color: var(--text);
+  text-align: left;
+  background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+  position: relative;
 }
 
-.icon-button:hover,
+.text-button::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 8px;
+  height: 1px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.25s ease;
+  opacity: 0.7;
+}
+
 .text-button:hover {
-  color: inherit;
-  transform: scale(1.05);
+  background: var(--primary-soft);
+  color: var(--primary);
 }
 
-.sidebar-menu li:hover .icon-button,
-.sidebar-menu li:hover .text-button {
-  color: white;
-}
-
-/* Facebook icon color when not hovered */
-.sidebar-menu li .icon-button .icon {
-  color: #4267B2; /* Facebook blue */
-}
-
-.sidebar-menu li:hover .icon-button .icon {
-  color: white; /* White when hovered */
+.text-button:hover::after {
+  transform: scaleX(0.4);
 }
 
 /* Footer */
-/* Footer - Compact */
 .sidebar-footer {
   margin-top: auto;
-  font-size: 0.75rem; /* Smaller font */
-  color: #64748b;
+  font-size: 11px;
+  color: var(--muted-soft);
   text-align: center;
-  padding: 12px 0; /* Reduced padding */
-  font-family: 'Century Gothic', 'CenturyGothic', 'AppleGothic', sans-serif;
-  border-top: 1px solid #e2e8f0;
-  margin-top: 15px; /* Reduced margin */
+  padding: 12px 6px 4px;
+  letter-spacing: 0.3px;
+  border-top: 1px solid var(--border);
 }
 
 .sidebar.collapsed .sidebar-footer {
   display: none;
 }
-.icon-wrapper {
-  position: relative; /* tooltip anchors here */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-/* Tooltip base */
+/* Tooltip (collapsed mode) */
 .tooltip {
   position: absolute;
-  left: 100%;          /* place it after the <li> content */
-  margin-left: 20px;    /* small gap */
+  left: calc(100% + 12px);
   top: 50%;
   transform: translateY(-50%);
-  background: #333;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 14px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
   white-space: nowrap;
   z-index: 9999;
-
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
-/* Show tooltip on hover */
-/* For sidebar li tooltips */
-.sidebar-menu li:hover .tooltip {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
-  transition-delay: 0.2s;
-}
-
-/* For any element with tooltip (like your button) */
 .icon-wrapper:hover .tooltip {
   opacity: 1;
-  transform: translateY(-50%) translateX(0);
-  transition-delay: 0.2s;
+  transition-delay: 0.15s;
+}
+
+/* Responsive sidebar widths */
+@media (max-width: 1024px) and (min-width: 601px) {
+  .sidebar,
+  .sidebar.expanded {
+    width: 64px;
+  }
+  .sidebar .sidebar-container {
+    padding: 16px 8px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
 }

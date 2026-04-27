@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./css/layout.css";
 import "./css/sidebarleft.css";
-import { FaQuestionCircle, FaRedo, FaFacebook } from "react-icons/fa";
+import {
+  HelpCircle,
+  Facebook,
+  RefreshCw,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import logoSymbol from "../assets/haha.png";
 
 interface SidebarLeftProps {
@@ -12,12 +18,10 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ onFAQsClick }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [isVisible, setIsVisible] = useState(true);
 
-  // Refreshes the page to restart the chat session
   const handleRefresh = () => {
     window.location.reload();
   };
 
-  // Opens the Facebook page in a new tab
   const handleFacebook = () => {
     window.open(
       "https://www.facebook.com/profile.php?id=61578204130888",
@@ -26,20 +30,13 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ onFAQsClick }) => {
   };
 
   const handleFAQs = () => {
-    console.log("FAQs clicked in Sidebar");
-    if (onFAQsClick) {
-      onFAQsClick();
-    }
+    if (onFAQsClick) onFAQsClick();
   };
 
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-
-      if (width <= 500) {
-        setIsVisible(false);
-        setIsExpanded(false);
-      } else if (width <= 600) {
+      if (width <= 600) {
         setIsVisible(false);
         setIsExpanded(false);
       } else if (width <= 1024) {
@@ -56,94 +53,106 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ onFAQsClick }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  if (!isVisible) return null;
+
   return (
-    <>
-      {isVisible && (
-        <aside
-          className={`sidebar left ${isExpanded ? "expanded" : "collapsed"}`}
+    <aside
+      className={`sidebar left ${isExpanded ? "expanded" : "collapsed"}`}
+    >
+      <div className="sidebar-container">
+        <button
+          className="toggle-btn"
+          onClick={() => setIsExpanded(!isExpanded)}
+          aria-label={isExpanded ? "Minimize sidebar" : "Expand sidebar"}
         >
-          <div className="sidebar-container">
+          {isExpanded ? (
+            <>
+              <ChevronLeft size={16} />
+              <span>Minimize</span>
+            </>
+          ) : (
+            <ChevronRight size={16} />
+          )}
+        </button>
+
+        <div className="sidebar-top">
+          <h2 className="logo">
+            <img src={logoSymbol} alt="J-Gear logo" />
+            {isExpanded && <span>J-Gear</span>}
+          </h2>
+
+          <div className="icon-wrapper">
             <button
-              className="toggle-btn"
-              onClick={() => setIsExpanded(!isExpanded)}
+              className={`new-chat ${
+                isExpanded ? "expanded-btn" : "collapsed-btn"
+              }`}
+              onClick={handleRefresh}
+              aria-label="Refresh chat"
             >
-              {isExpanded ? "«  " : "»"}
-              {isExpanded && <span> Minimize</span>}
+              <RefreshCw size={16} />
+              {isExpanded && <span>Refresh Chat</span>}
             </button>
-
-            <div className="sidebar-top">
-              <h2 className="logo">
-                {isExpanded && (
-                  <img
-                    src={logoSymbol}
-                    alt="CTE Buddy Logo"
-                    className="w-6 h-6 inline-block"
-                  />
-                )}
-                {isExpanded ? "J-Gear" : "J-G"}
-              </h2>
-              <div className="icon-wrapper">
-                <button
-                  className={`new-chat ${
-                    isExpanded ? "expanded-btn" : "collapsed-btn"
-                  }`}
-                  onClick={handleRefresh}
-                >
-                  {isExpanded ? (
-                    <>
-                      <FaRedo size={18} /> Refresh Chat
-                    </>
-                  ) : (
-                    <FaRedo size={18} />
-                  )}
-                </button>
-                {!isExpanded && <span className="tooltip">Refresh Chat</span>}
-              </div>
-            </div>
-
-            <nav className="sidebar-menu">
-              <ul>
-                <li>
-                  <div className="icon-wrapper">
-                    <button onClick={handleFAQs} className="icon-button">
-                      <FaQuestionCircle className="icon" />
-                    </button>
-                    {!isExpanded && <span className="tooltip">FAQs</span>}
-                  </div>
-                  {isExpanded && (
-                    <button onClick={handleFAQs} className="text-button">
-                      FAQs
-                    </button>
-                  )}
-                </li>
-
-                <li>
-                  <div className="icon-wrapper">
-                    <button onClick={handleFacebook} className="icon-button">
-                      <FaFacebook className="icon" />
-                    </button>
-                    {!isExpanded && (
-                      <span className="tooltip">Our FB Page</span>
-                    )}
-                  </div>
-                  {isExpanded && (
-                    <button onClick={handleFacebook} className="text-button">
-                      Our FB Page
-                    </button>
-                  )}
-                </li>
-              </ul>
-            </nav>
-
-            {isExpanded && (
-              <div className="sidebar-footer">
-                <small>Student Portal • Google Classroom • Email</small>
-              </div>
-            )}
+            {!isExpanded && <span className="tooltip">Refresh Chat</span>}
           </div>
-        </aside>
-      )}
-    </>
+        </div>
+
+        <nav className="sidebar-menu">
+          <ul>
+            <li>
+              {isExpanded ? (
+                <button onClick={handleFAQs} className="text-button">
+                  <HelpCircle
+                    size={18}
+                    style={{ marginRight: 12, color: "var(--primary)" }}
+                  />
+                  FAQs
+                </button>
+              ) : (
+                <div className="icon-wrapper">
+                  <button
+                    onClick={handleFAQs}
+                    className="icon-button"
+                    aria-label="FAQs"
+                  >
+                    <HelpCircle className="icon" />
+                  </button>
+                  <span className="tooltip">FAQs</span>
+                </div>
+              )}
+            </li>
+
+            <li>
+              {isExpanded ? (
+                <button onClick={handleFacebook} className="text-button">
+                  <Facebook
+                    size={18}
+                    style={{ marginRight: 12, color: "var(--primary)" }}
+                  />
+                  Our FB Page
+                </button>
+              ) : (
+                <div className="icon-wrapper">
+                  <button
+                    onClick={handleFacebook}
+                    className="icon-button"
+                    aria-label="Our FB Page"
+                  >
+                    <Facebook className="icon" />
+                  </button>
+                  <span className="tooltip">Our FB Page</span>
+                </div>
+              )}
+            </li>
+          </ul>
+        </nav>
+
+        {isExpanded && (
+          <div className="sidebar-footer">
+            <small>Student Portal • Google Classroom • Email</small>
+          </div>
+        )}
+      </div>
+    </aside>
   );
 };
 
