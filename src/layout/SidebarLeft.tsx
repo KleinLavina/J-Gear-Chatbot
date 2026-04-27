@@ -8,7 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import logoSymbol from "../assets/haha.png";
+import logoSymbol from "../assets/haha-removebg-preview.png";
 
 interface SidebarLeftProps {
   onFAQsClick?: () => void;

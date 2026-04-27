@@ -73,20 +73,17 @@
 }
 
 .sidebar-top .logo img {
-  height: 96px;
-  width: 96px;
-  border-radius: 50%;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
   object-fit: cover;
-  background: var(--bg);
-  box-shadow: 0 0 0 4px var(--secondary-soft),
-    0 8px 22px rgba(238, 94, 32, 0.18);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  object-position: center;
+  scale: 1.15;
+  transition: scale 0.25s ease;
 }
 
 .sidebar-top .logo img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 0 4px var(--accent-soft),
-    0 12px 26px rgba(238, 94, 32, 0.24);
+  scale: 1.2;
 }
 
 .sidebar.collapsed .sidebar-top .logo {
@@ -94,9 +91,9 @@
 }
 
 .sidebar.collapsed .sidebar-top .logo img {
-  height: 40px;
-  width: 40px;
-  box-shadow: 0 0 0 2px var(--secondary-soft);
+  width: 44px;
+  aspect-ratio: 16 / 10;
+  scale: 1;
 }
 
 /* Refresh chat - primary accent button (skinned to theme) */
