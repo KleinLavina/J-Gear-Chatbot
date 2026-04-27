@@ -78,7 +78,6 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ onFAQsClick }) => {
         <div className="sidebar-top">
           <h2 className="logo">
             <img src={logoSymbol} alt="J-Gear logo" />
-            {isExpanded && <span>J-Gear</span>}
           </h2>
 
           <div className="icon-wrapper">
