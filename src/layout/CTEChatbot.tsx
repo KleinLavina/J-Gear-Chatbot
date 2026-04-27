@@ -6,6 +6,7 @@ import type { Message } from "./backend/chatService2";
 import { getMerchandiseResponse } from "./backend/chatService2";
 import "./css/chatbot.css";
 import type { SuggestedReply } from "./backend/suggestedReplies";
+import { GravityStarsBackground } from "../components/animate-ui/backgrounds/gravity-stars";
 
 // In CTEChatbot.tsx - update the interface and component
 interface CTEChatbotProps {
@@ -87,6 +88,18 @@ const CTEChatbot: React.FC<CTEChatbotProps> = ({
   return (
     <main className="chat">
       <div className="chat-container">
+        <div className="chat-stars-bg" aria-hidden="true">
+          <GravityStarsBackground
+            starsCount={70}
+            starsSize={1.6}
+            starsOpacity={0.55}
+            glowIntensity={10}
+            movementSpeed={0.25}
+            mouseInfluence={120}
+            mouseGravity="attract"
+            gravityStrength={60}
+          />
+        </div>
         <ChatHeader title="J-Gear Assistant" onFAQsClick={onFAQsClick} />
         <ChatMessages
           messages={messages}

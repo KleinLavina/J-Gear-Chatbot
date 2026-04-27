@@ -1,4 +1,5 @@
 .chat-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,6 +9,23 @@
   box-shadow: var(--shadow-md);
   overflow: hidden;
   border: 1px solid var(--border);
+  isolation: isolate;
+}
+
+.chat-stars-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  color: var(--primary);
+  opacity: 0.55;
+}
+
+.chat-container > .chat-header,
+.chat-container > .chat-messages,
+.chat-container > .chat-input-area {
+  position: relative;
+  z-index: 1;
 }
 
 .chat-input-area {
