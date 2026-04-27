@@ -90,14 +90,14 @@ const CTEChatbot: React.FC<CTEChatbotProps> = ({
       <div className="chat-container">
         <div className="chat-stars-bg" aria-hidden="true">
           <GravityStarsBackground
-            starsCount={70}
-            starsSize={1.6}
-            starsOpacity={0.55}
-            glowIntensity={10}
-            movementSpeed={0.25}
-            mouseInfluence={120}
+            starsCount={120}
+            starsSize={2.2}
+            starsOpacity={0.85}
+            glowIntensity={14}
+            movementSpeed={0.28}
+            mouseInfluence={140}
             mouseGravity="attract"
-            gravityStrength={60}
+            gravityStrength={70}
           />
         </div>
         <ChatHeader title="J-Gear Assistant" onFAQsClick={onFAQsClick} />
