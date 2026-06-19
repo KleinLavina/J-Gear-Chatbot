@@ -15,6 +15,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
   const [showRightSection, setShowRightSection] = useState(false);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, right: 0 });
   const menuBtnRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,10 +47,10 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
   useEffect(() => {
     if (!isMenuOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
-      if (
-        menuBtnRef.current &&
-        !menuBtnRef.current.contains(e.target as Node)
-      ) {
+      const target = e.target as Node;
+      const insideBtn = menuBtnRef.current?.contains(target);
+      const insideDropdown = dropdownRef.current?.contains(target);
+      if (!insideBtn && !insideDropdown) {
         setIsMenuOpen(false);
       }
     };
@@ -130,6 +131,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
             {/* Mobile Dropdown Menu — rendered via portal to escape overflow:hidden */}
             {isMenuOpen && createPortal(
               <div
+                ref={dropdownRef}
                 className="mobile-dropdown"
                 style={{
                   position: "fixed",
