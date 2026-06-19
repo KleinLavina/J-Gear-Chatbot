@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { Menu, RefreshCw, HelpCircle, Facebook } from "lucide-react";
 import logo from "../../assets/ashbro.png";
 import "../css/chatheader.css";
@@ -12,6 +13,8 @@ interface ChatHeaderProps {
 const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showRightSection, setShowRightSection] = useState(false);
+  const [dropdownPos, setDropdownPos] = useState({ top: 0, right: 0 });
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -29,6 +32,30 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (isMenuOpen && menuBtnRef.current) {
+      const rect = menuBtnRef.current.getBoundingClientRect();
+      setDropdownPos({
+        top: rect.bottom + 8,
+        right: window.innerWidth - rect.right,
+      });
+    }
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        menuBtnRef.current &&
+        !menuBtnRef.current.contains(e.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMenuOpen]);
 
   const handleRefresh = () => {
     window.location.reload();
@@ -92,6 +119,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
           {/* Mobile Menu Button (visible on small screens) */}
           <div className="mobile-menu">
             <button
+              ref={menuBtnRef}
               className="menu-btn"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Menu"
@@ -99,9 +127,16 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
               <Menu size={20} />
             </button>
 
-            {/* Mobile Dropdown Menu */}
-            {isMenuOpen && (
-              <div className="mobile-dropdown">
+            {/* Mobile Dropdown Menu — rendered via portal to escape overflow:hidden */}
+            {isMenuOpen && createPortal(
+              <div
+                className="mobile-dropdown"
+                style={{
+                  position: "fixed",
+                  top: dropdownPos.top,
+                  right: dropdownPos.right,
+                }}
+              >
                 <button className="dropdown-item" onClick={handleFAQs}>
                   <HelpCircle size={16} />
                   <span>FAQs</span>
@@ -114,7 +149,8 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ title, onFAQsClick }) => {
                   <Facebook size={16} />
                   <span>Our FB Page</span>
                 </button>
-              </div>
+              </div>,
+              document.body
             )}
           </div>
         </div>
