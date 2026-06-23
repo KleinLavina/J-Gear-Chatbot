@@ -237,6 +237,9 @@
   padding: 12px 6px 4px;
   letter-spacing: 0.3px;
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .sidebar.collapsed .sidebar-footer {

@@ -147,7 +147,8 @@ const SidebarLeft: React.FC<SidebarLeftProps> = ({ onFAQsClick }) => {
 
         {isExpanded && (
           <div className="sidebar-footer">
-            <small>Student Portal • Google Classroom • Email</small>
+              <small>Saint Joseph College Maasin So. Leyte</small>
+            <small>BSBA Department</small>
           </div>
         )}
       </div>
