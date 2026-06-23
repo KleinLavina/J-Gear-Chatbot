@@ -586,3 +586,62 @@ I can help you with questions about:
 Go ahead - ask your question! I'm ready to help 🎯
 
 💬 *If your question requires more detailed discussion, don't hesitate to message our Facebook page for personalized assistance!*`;
+
+export const DEFAULT_RESPONSES: string[] = [
+  `🤔 Hmm, I didn't quite catch that one!
+
+I'm your Tatak Josephinian assistant — here to help with anything SJC merchandise related. 🛍️
+
+Try asking me about:
+• What products are available?
+• How do I place an order?
+• What are the prices?
+• Do you accept GCash?
+• Can I request a custom order?
+
+👉 Go ahead, rephrase it and I'll do my best! 😊`,
+
+  `😅 Oops! That one's a little outside my area.
+
+I specialize in Tatak Josephinian merchandise, so here's what I know best:
+• 🛍️ Available products and new arrivals
+• 💰 Pricing and payment (GCash / downpayment)
+• 📦 How to order and reserve items
+• 🎨 Custom and bulk orders
+• 📍 Store location and contact info
+
+What would you like to know? 👇`,
+
+  `🙈 I'm not sure I understood that — can you try rephrasing?
+
+Here are some things I can definitely help with:
+• Merch prices and stock availability
+• Step-by-step ordering process
+• GCash payment instructions
+• Sizing guides
+• Contacting the store team
+
+Still stuck? Message us directly on our Facebook page for personalized help! 💬`,
+
+  `🤷 That one went over my head, but no worries!
+
+Popular questions I get:
+• "What products do you sell?"
+• "How much is the tote bag?"
+• "How do I order?"
+• "What's your GCash number?"
+• "Do you do custom orders?"
+
+Pick one or ask your own — I'm ready! ✨`,
+
+  `💭 Hmm, I don't have an answer for that specific question.
+
+But I'm fully loaded with info about:
+• Tatak Josephinian merchandise catalog
+• Ordering, reservations & downpayments
+• Payment methods and GCash details
+• Availability and sizing
+• About SJC and the BSBA Department
+
+👉 Ask me something from that list and I'll answer right away! 🎯`,
+];

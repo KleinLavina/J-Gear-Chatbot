@@ -1,5 +1,6 @@
 // chatService.ts - Tatak Josephinian - Official SJC Merchandise Store
 import {
+  DEFAULT_RESPONSES,
   GREETING_RESPONSE,
   HOW_ARE_YOU_RESPONSE,
   ABOUT_SJC_RESPONSE,
@@ -15,7 +16,6 @@ import {
   ORDER_PROCESS_RESPONSE,
   GCASH_DETAILS_RESPONSE,
   THANKS_RESPONSE,
-  DEFAULT_RESPONSE,
   NEW_ARRIVALS_RESPONSE,
   SIZING_RESPONSE,
   DOWNPAYMENT_RESPONSE,
@@ -52,20 +52,61 @@ export interface ChatResponse {
   suggestions: SuggestedReply[];
 }
 
-// Calculates match score between user input and keyword arrays for response selection
-function calculateMatchScore(input: string, keywords: string[]): number {
-  let score = 0;
+// Returns a random fallback response from the pool
+function getDefaultResponse(): string {
+  return DEFAULT_RESPONSES[Math.floor(Math.random() * DEFAULT_RESPONSES.length)];
+}
 
-  keywords.forEach((keyword) => {
-    const regex = new RegExp(`\\b${keyword}\\b`, "i");
-    if (regex.test(input)) {
-      const wordCount = keyword.split(" ").length;
-      score += wordCount * 2;
-      if (input.includes(keyword.toLowerCase())) {
-        score += 3;
+// Calculates match score between user input and keyword arrays for response selection
+// Improvements:
+//   1. Multi-word phrases score exponentially more than single words
+//   2. Single-word keywords are deduplicated per group (prevents stacking of generic words)
+//   3. Coverage bonus when a phrase accounts for a large portion of the input
+//   4. Full exact-input match gives a large bonus
+function calculateMatchScore(input: string, keywords: string[]): number {
+  const inputWordCount = Math.max(input.split(/\s+/).filter(Boolean).length, 1);
+  let score = 0;
+  // Track which single words already contributed to this group's score
+  const coveredWords = new Set<string>();
+
+  for (const keyword of keywords) {
+    const kwLower = keyword.toLowerCase();
+    const kwWordCount = kwLower.split(/\s+/).length;
+
+    // Ignore single-character noise tokens
+    if (kwLower.length <= 1) continue;
+
+    const isSubstring = input.includes(kwLower);
+    let isWordBoundary = false;
+
+    if (!isSubstring) {
+      try {
+        const escaped = kwLower.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        isWordBoundary = new RegExp(`\\b${escaped}\\b`, "i").test(input);
+      } catch {
+        // skip malformed patterns
       }
     }
-  });
+
+    if (!isSubstring && !isWordBoundary) continue;
+
+    if (kwWordCount > 1) {
+      // Multi-word phrase: score scales with phrase length + substring bonus
+      score += kwWordCount * 5 + (isSubstring ? 5 : 0);
+
+      // Coverage bonus: phrase covers ≥50% of the user's input
+      if (kwWordCount / inputWordCount >= 0.5) score += 4;
+
+      // Full exact input match — strongest possible signal
+      if (input.trim() === kwLower) score += 12;
+    } else {
+      // Single-word: only count each unique word once per group to prevent pile-up
+      if (!coveredWords.has(kwLower)) {
+        score += isSubstring ? 5 : 2;
+        coveredWords.add(kwLower);
+      }
+    }
+  }
 
   return score;
 }
@@ -1571,7 +1612,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
   if (!input) {
     return {
-      message: DEFAULT_RESPONSE,
+      message: getDefaultResponse(),
       suggestions: getContextSuggestions('general'),
     };
   }
@@ -1598,7 +1639,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
   }
 
   return {
-    message: DEFAULT_RESPONSE,
+    message: getDefaultResponse(),
     suggestions: getContextSuggestions('general'),
   };
 }
