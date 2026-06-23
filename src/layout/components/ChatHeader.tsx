@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Menu, RefreshCw, HelpCircle, Facebook } from "lucide-react";
-import logo from "../../assets/ashbro.png";
+import logo from "../../assets/official-merch.png";
 import "../css/chatheader.css";
 
 // Update props interface to include the handler

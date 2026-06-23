@@ -3,7 +3,7 @@ import { User } from "lucide-react";
 import type { Message } from "../backend/chatService2";
 import "../css/chatmessage.css";
 import type { SuggestedReply } from "../backend/suggestedReplies";
-import logo from "../../assets/ashbro.png";
+import logo from "../../assets/official-merch.png";
 import { motion } from "framer-motion";
 
 // Variants for animation
