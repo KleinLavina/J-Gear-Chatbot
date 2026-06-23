@@ -1,0 +1,23 @@
+To address the issue where your chatbot's suggested replies are repetitive and occasionally irrelevant, you need a prompt that instructs the AI to enforce **diversity** and **relevance filtering**.
+
+Here is a structured prompt you can use with the Replit Agent or your chatbot's system configuration to fix these issues.
+
+---
+
+### Recommended Prompt
+
+> "Act as a sophisticated conversation designer for my chatbot. I need you to audit and improve the 'Suggested Replies' logic. Please implement the following two rules:
+> 1. **Diversity of Responses:** Ensure that the generated suggested replies are distinct from one another. Avoid producing the same or near-identical responses for similar keywords. Use a randomized selection or a rotation mechanism if necessary to ensure users see a varied set of options.
+> 2. **Strict Scope Enforcement:** Filter out any suggested replies that fall outside the defined scope of our knowledge base (Saint Joseph College Maasin So. Leyte and BSBA Department information). If a keyword is mentioned but the context does not support a specific action or answer, do not generate a suggested reply for it.
+> 
+> 
+> Please prioritize accuracy and variety to ensure the user experience is helpful and professional."
+
+---
+
+### Tips for Implementation
+
+* **Define the Scope Clearly:** If you haven't already, provide the Agent with a short "System Prompt" or text file containing the exact facts it is allowed to answer. For example: *"You only answer questions regarding Saint Joseph College Maasin So. Leyte and the BSBA department. If a query is outside this, politely steer the user back to these topics."*
+* **The "Why" Behind the Repetition:** Usually, chatbots repeat answers because they are mapped to a single keyword (e.g., "Help" always triggers "Contact Us"). By asking the Agent to **"Contextualize"** rather than just **"Keyword match,"** you force the AI to look at the previous messages before suggesting a reply.
+
+Would you like me to help you draft the specific system instructions for your chatbot's knowledge base to better prevent those out-of-scope replies?

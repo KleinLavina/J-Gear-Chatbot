@@ -28,24 +28,10 @@ import {
   HAVE_QUESTION_RESPONSE,
 } from "./chatListResponse";
 
-// Import both the type and the actual suggestion data
 import {
   type SuggestedReply,
-  contextBasedSuggestions,
   getContextSuggestions,
 } from "./suggestedReplies";
-
-// Direct access shortcuts - UPDATED to match EXACT categories from your file
-const greetingReplies = contextBasedSuggestions.greetings;
-const generalReplies = contextBasedSuggestions.general;
-const productsReplies = contextBasedSuggestions.products_overview;
-const availabilityReplies = contextBasedSuggestions.availability;
-const paymentReplies = contextBasedSuggestions.payment_methods;
-const contactReplies = contextBasedSuggestions.contact_info;
-const customOrdersReplies = contextBasedSuggestions.custom_orders;
-const orderingReplies = contextBasedSuggestions.ordering_process;
-const aboutStoreReplies = contextBasedSuggestions.about_store;
-const thanksReplies = contextBasedSuggestions.thanks;
 
 export interface Message {
   id: number;
@@ -143,7 +129,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 10,
       response: DOWNPAYMENT_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('downpayment'),
     },
 
     {
@@ -216,7 +202,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 10,
       response: GCASH_DETAILS_RESPONSE,
-      suggestions: paymentReplies,
+      suggestions: getContextSuggestions('gcash'),
     },
     {
       keywords: [
@@ -300,7 +286,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 10,
       response: CUSTOM_ORDERS_RESPONSE,
-      suggestions: customOrdersReplies,
+      suggestions: getContextSuggestions('custom_orders'),
     },
 
     {
@@ -373,7 +359,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 9,
       response: ORDER_PROCESS_RESPONSE,
-      suggestions: orderingReplies,
+      suggestions: getContextSuggestions('ordering_process'),
     },
     {
       keywords: [
@@ -443,7 +429,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 9,
       response: PRICING_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('pricing_info'),
     },
     {
       keywords: [
@@ -519,7 +505,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 7,
       response: AVAILABILITY_RESPONSE,
-      suggestions: availabilityReplies,
+      suggestions: getContextSuggestions('availability'),
     },
     {
       keywords: [
@@ -546,7 +532,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 9,
       response: PRODUCTS_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('products_overview'),
     },
     {
       keywords: [
@@ -618,7 +604,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 8,
       response: NEW_ARRIVALS_RESPONSE,
-      suggestions: productsReplies, // Using productsReplies since new_arrivals doesn't exist
+      suggestions: getContextSuggestions('products_overview'),
     },
     {
       keywords: [
@@ -693,7 +679,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 8,
       response: SIZING_RESPONSE,
-      suggestions: getContextSuggestions("apparel"), // Use apparel category for sizing
+      suggestions: getContextSuggestions('sizing'),
     },
     {
       keywords: [
@@ -766,7 +752,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 7,
       response: STORE_RESPONSE,
-      suggestions: contactReplies, // Use contactReplies for store location
+      suggestions: getContextSuggestions('contact_info'),
     },
     {
       keywords: [
@@ -839,7 +825,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 7,
       response: CONTACT_RESPONSE,
-      suggestions: contactReplies,
+      suggestions: getContextSuggestions('contact_info'),
     },
     {
       keywords: [
@@ -890,7 +876,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 6,
       response: ABOUT_SJC_RESPONSE,
-      suggestions: aboutStoreReplies,
+      suggestions: getContextSuggestions('about_sjc'),
     },
     {
       keywords: [
@@ -950,7 +936,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 6,
       response: ABOUT_TATAK_RESPONSE,
-      suggestions: aboutStoreReplies,
+      suggestions: getContextSuggestions('about_store'),
     },
     {
       keywords: [
@@ -1004,7 +990,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 6,
       response: ABOUT_CREATOR_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('developers'),
     },
     {
       keywords: [
@@ -1066,7 +1052,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 6,
       response: PAYMENT_RESPONSE,
-      suggestions: paymentReplies,
+      suggestions: getContextSuggestions('payment_methods'),
     },
     {
       keywords: [
@@ -1102,7 +1088,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 3,
       response: THANKS_RESPONSE,
-      suggestions: thanksReplies,
+      suggestions: getContextSuggestions('thanks'),
     },
     {
       keywords: [
@@ -1149,7 +1135,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 8,
       response: NEED_HELP_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('help'),
     },
 
     {
@@ -1214,7 +1200,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 8,
       response: CUSTOMER_SERVICE_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('help'),
     },
     {
       keywords: [
@@ -1297,7 +1283,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
       priority: 9,
       response: ORDER_PROBLEM_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('order_problem'),
     },
     {
       keywords: [
@@ -1358,7 +1344,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 9,
       response: PAYMENT_ISSUE_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('payment_issue'),
     },
     {
       keywords: [
@@ -1404,7 +1390,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 5,
       response: CANT_DECIDE_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('general'),
     },
     {
       keywords: [
@@ -1452,7 +1438,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 5,
       response: WHAT_TO_ASK_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('general'),
     },
     {
       keywords: [
@@ -1500,7 +1486,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 6,
       response: HAVE_QUESTION_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('general'),
     },
     {
       keywords: [
@@ -1545,7 +1531,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 2,
       response: GREETING_RESPONSE,
-      suggestions: greetingReplies,
+      suggestions: getContextSuggestions('greetings'),
     },
     {
       keywords: [
@@ -1579,14 +1565,14 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
       priority: 1,
       response: HOW_ARE_YOU_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('greetings'),
     },
   ];
 
   if (!input) {
     return {
       message: DEFAULT_RESPONSE,
-      suggestions: generalReplies,
+      suggestions: getContextSuggestions('general'),
     };
   }
 
@@ -1613,6 +1599,6 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
 
   return {
     message: DEFAULT_RESPONSE,
-    suggestions: generalReplies,
+    suggestions: getContextSuggestions('general'),
   };
 }
