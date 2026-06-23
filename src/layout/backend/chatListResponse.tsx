@@ -165,23 +165,20 @@ Store Hours:
 export const PAYMENT_RESPONSE = `💳 Payment Methods
 
 Accepted Payment:
-✅ GCash - Our primary payment method
+✅ GCash — Our primary payment method
 
 GCash Details:
-📱 Account Number: 0975-902-1901
-👤 Account Name: Tatak Josephinian
-
-Important Security Tips:
-🔒 Always double-check the GCash number before sending
-🔒 Keep your transaction receipts
-🔒 Message us immediately after payment
+🔒 For your security, our GCash number is only shared through our official Facebook page.
+Please message us there to get the payment details — we'll send it to you directly!
 
 Payment Process:
 1. Confirm your order with us
-2. We'll provide total amount
-3. Send payment to our GCash number
-4. Send screenshot of payment confirmation
-5. We'll confirm and process your order`;
+2. Message us on Facebook — we'll send you the GCash number
+3. Send the exact amount via GCash
+4. Send us a screenshot of your payment confirmation
+5. We'll confirm and process your order right away!
+
+[FB_BUTTON]`;
 
 export const CONTACT_RESPONSE = `📞 Contact Information
 
@@ -226,7 +223,7 @@ Simple 5-Step Process:
 1. **Browse** - Check our Facebook page for available items
 2. **Inquire** - Message us with what you want
 3. **Confirm** - We'll check stock and give you total
-4. **Pay** - Send payment via GCash (0975-902-1901)
+4. **Pay** - Send payment via GCash (number provided on Facebook)
 5. **Receive** - Pick up or arrange delivery
 
 Pickup Options:
@@ -241,26 +238,25 @@ Delivery:
 
 export const GCASH_DETAILS_RESPONSE = `📱 GCash Payment Instructions
 
-Our GCash Information:
-📞 Number: 0975-902-1901
-👤 Account: Tatak Josephinian
+How to get our GCash number:
+🔒 For everyone's security, we only share our GCash number through our official Facebook page.
+This ensures you're always sending to the right, verified account!
 
-Step-by-Step Payment:
-1. Open GCash app
-2. Tap "Send Money"
-3. Enter our number: 0975-902-1901
-4. Input exact amount we provided
-5. Add note: "Your Name + Item"
-6. Complete transaction
-7. Send us screenshot of receipt
+Step-by-Step:
+1. Message us on Facebook to confirm your order
+2. We'll send you our verified GCash number directly
+3. Open GCash → Tap "Send Money"
+4. Enter the number we sent you
+5. Input the exact amount
+6. Add note: "Your Name + Item"
+7. Complete the transaction
+8. Send us a screenshot of your receipt
 
-Security Reminders:
-⚠️ DOUBLE-CHECK the number: 0975-902-1901
-⚠️ Never send to any other number
-⚠️ Keep your transaction reference
-⚠️ Message us immediately after paying
+Why Facebook?
+⚠️ Scammers may pose as sellers with fake numbers.
+Messaging our official page is the safest way to get payment info.
 
-Problems? Message us right away!`;
+[FB_BUTTON]`;
 
 export const THANKS_RESPONSE = `🙏 Thank you for choosing Tatak Josephinian!
 

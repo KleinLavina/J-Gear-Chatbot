@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { User } from "lucide-react";
+import { FaFacebook } from "react-icons/fa";
 import type { Message } from "../backend/chatService2";
 import "../css/chatmessage.css";
 import type { SuggestedReply } from "../backend/suggestedReplies";
 import logo from "../../assets/official-merch.png";
 import { motion } from "framer-motion";
+
+const FB_PAGE_URL = "https://www.facebook.com/profile.php?id=61578204130888";
+const FB_BUTTON_MARKER = "[FB_BUTTON]";
 
 // Variants for animation
 const containerVariants = {
@@ -83,14 +87,28 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
                 msg.isBot ? "bot-bubble" : "user-bubble"
               }`}
             >
-              {/* ✅ Only apply typewriter effect if bot */}
-              <div className="chat-text">
-                {msg.isBot ? (
-                  <TypewriterText text={msg.text || ""} />
-                ) : (
-                  msg.text
-                )}
-              </div>
+              {msg.isBot ? (
+                <>
+                  <div className="chat-text">
+                    <TypewriterText
+                      text={(msg.text || "").replace(FB_BUTTON_MARKER, "").trimEnd()}
+                    />
+                  </div>
+                  {msg.text?.includes(FB_BUTTON_MARKER) && (
+                    <a
+                      href={FB_PAGE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="fb-link-button"
+                    >
+                      <FaFacebook />
+                      Message us on Facebook
+                    </a>
+                  )}
+                </>
+              ) : (
+                <div className="chat-text">{msg.text}</div>
+              )}
 
               <div className="chat-time">
                 {msg.timestamp?.toLocaleTimeString([], {
