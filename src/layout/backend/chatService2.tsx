@@ -1,31 +1,31 @@
 // chatService.ts - Tatak Josephinian - Official SJC Merchandise Store
 import {
   DEFAULT_RESPONSES,
-  GREETING_RESPONSE,
-  HOW_ARE_YOU_RESPONSE,
-  ABOUT_SJC_RESPONSE,
-  ABOUT_CREATOR_RESPONSE,
-  ABOUT_TATAK_RESPONSE,
-  PRODUCTS_RESPONSE,
-  PRICING_RESPONSE,
-  AVAILABILITY_RESPONSE,
-  STORE_RESPONSE,
-  PAYMENT_RESPONSE,
-  CONTACT_RESPONSE,
-  CUSTOM_ORDERS_RESPONSE,
-  ORDER_PROCESS_RESPONSE,
-  GCASH_DETAILS_RESPONSE,
-  THANKS_RESPONSE,
-  NEW_ARRIVALS_RESPONSE,
-  SIZING_RESPONSE,
-  DOWNPAYMENT_RESPONSE,
-  NEED_HELP_RESPONSE,
-  CUSTOMER_SERVICE_RESPONSE,
-  ORDER_PROBLEM_RESPONSE,
-  PAYMENT_ISSUE_RESPONSE,
-  CANT_DECIDE_RESPONSE,
-  WHAT_TO_ASK_RESPONSE,
-  HAVE_QUESTION_RESPONSE,
+  GREETING_RESPONSES,
+  HOW_ARE_YOU_RESPONSES,
+  ABOUT_SJC_RESPONSES,
+  ABOUT_CREATOR_RESPONSES,
+  ABOUT_TATAK_RESPONSES,
+  PRODUCTS_RESPONSES,
+  PRICING_RESPONSES,
+  AVAILABILITY_RESPONSES,
+  STORE_RESPONSES,
+  PAYMENT_RESPONSES,
+  CONTACT_RESPONSES,
+  CUSTOM_ORDERS_RESPONSES,
+  ORDER_PROCESS_RESPONSES,
+  GCASH_DETAILS_RESPONSES,
+  THANKS_RESPONSES,
+  NEW_ARRIVALS_RESPONSES,
+  SIZING_RESPONSES,
+  DOWNPAYMENT_RESPONSES,
+  NEED_HELP_RESPONSES,
+  CUSTOMER_SERVICE_RESPONSES,
+  ORDER_PROBLEM_RESPONSES,
+  PAYMENT_ISSUE_RESPONSES,
+  CANT_DECIDE_RESPONSES,
+  WHAT_TO_ASK_RESPONSES,
+  HAVE_QUESTION_RESPONSES,
 } from "./chatListResponse";
 
 import {
@@ -55,6 +55,11 @@ export interface ChatResponse {
 // Returns a random fallback response from the pool
 function getDefaultResponse(): string {
   return DEFAULT_RESPONSES[Math.floor(Math.random() * DEFAULT_RESPONSES.length)];
+}
+
+// Picks a random variant from a response array so every reply feels fresh
+function pickResponse(variants: string[]): string {
+  return variants[Math.floor(Math.random() * variants.length)];
 }
 
 // Calculates match score between user input and keyword arrays for response selection
@@ -169,7 +174,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "partial",
       ],
       priority: 10,
-      response: DOWNPAYMENT_RESPONSE,
+      response: pickResponse(DOWNPAYMENT_RESPONSES),
       suggestions: getContextSuggestions('downpayment'),
     },
 
@@ -242,7 +247,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "numero",
       ],
       priority: 10,
-      response: GCASH_DETAILS_RESPONSE,
+      response: pickResponse(GCASH_DETAILS_RESPONSES),
       suggestions: getContextSuggestions('gcash'),
     },
     {
@@ -326,7 +331,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 10,
-      response: CUSTOM_ORDERS_RESPONSE,
+      response: pickResponse(CUSTOM_ORDERS_RESPONSES),
       suggestions: getContextSuggestions('custom_orders'),
     },
 
@@ -399,7 +404,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 9,
-      response: ORDER_PROCESS_RESPONSE,
+      response: pickResponse(ORDER_PROCESS_RESPONSES),
       suggestions: getContextSuggestions('ordering_process'),
     },
     {
@@ -469,7 +474,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 9,
-      response: PRICING_RESPONSE,
+      response: pickResponse(PRICING_RESPONSES),
       suggestions: getContextSuggestions('pricing_info'),
     },
     {
@@ -545,7 +550,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 7,
-      response: AVAILABILITY_RESPONSE,
+      response: pickResponse(AVAILABILITY_RESPONSES),
       suggestions: getContextSuggestions('availability'),
     },
     {
@@ -572,7 +577,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "umbrellas",
       ],
       priority: 9,
-      response: PRODUCTS_RESPONSE,
+      response: pickResponse(PRODUCTS_RESPONSES),
       suggestions: getContextSuggestions('products_overview'),
     },
     {
@@ -644,7 +649,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 8,
-      response: NEW_ARRIVALS_RESPONSE,
+      response: pickResponse(NEW_ARRIVALS_RESPONSES),
       suggestions: getContextSuggestions('products_overview'),
     },
     {
@@ -719,7 +724,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 8,
-      response: SIZING_RESPONSE,
+      response: pickResponse(SIZING_RESPONSES),
       suggestions: getContextSuggestions('sizing'),
     },
     {
@@ -792,7 +797,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 7,
-      response: STORE_RESPONSE,
+      response: pickResponse(STORE_RESPONSES),
       suggestions: getContextSuggestions('contact_info'),
     },
     {
@@ -865,7 +870,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "text",
       ],
       priority: 7,
-      response: CONTACT_RESPONSE,
+      response: pickResponse(CONTACT_RESPONSES),
       suggestions: getContextSuggestions('contact_info'),
     },
     {
@@ -916,7 +921,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "saint joseph",
       ],
       priority: 6,
-      response: ABOUT_SJC_RESPONSE,
+      response: pickResponse(ABOUT_SJC_RESPONSES),
       suggestions: getContextSuggestions('about_sjc'),
     },
     {
@@ -976,7 +981,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "bsba",
       ],
       priority: 6,
-      response: ABOUT_TATAK_RESPONSE,
+      response: pickResponse(ABOUT_TATAK_RESPONSES),
       suggestions: getContextSuggestions('about_store'),
     },
     {
@@ -1030,7 +1035,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "creator",
       ],
       priority: 6,
-      response: ABOUT_CREATOR_RESPONSE,
+      response: pickResponse(ABOUT_CREATOR_RESPONSES),
       suggestions: getContextSuggestions('developers'),
     },
     {
@@ -1092,7 +1097,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "method",
       ],
       priority: 6,
-      response: PAYMENT_RESPONSE,
+      response: pickResponse(PAYMENT_RESPONSES),
       suggestions: getContextSuggestions('payment_methods'),
     },
     {
@@ -1128,7 +1133,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "thanks",
       ],
       priority: 3,
-      response: THANKS_RESPONSE,
+      response: pickResponse(THANKS_RESPONSES),
       suggestions: getContextSuggestions('thanks'),
     },
     {
@@ -1175,7 +1180,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "urgent",
       ],
       priority: 8,
-      response: NEED_HELP_RESPONSE,
+      response: pickResponse(NEED_HELP_RESPONSES),
       suggestions: getContextSuggestions('help'),
     },
 
@@ -1240,7 +1245,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 8,
-      response: CUSTOMER_SERVICE_RESPONSE,
+      response: pickResponse(CUSTOMER_SERVICE_RESPONSES),
       suggestions: getContextSuggestions('help'),
     },
     {
@@ -1323,7 +1328,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
       ],
 
       priority: 9,
-      response: ORDER_PROBLEM_RESPONSE,
+      response: pickResponse(ORDER_PROBLEM_RESPONSES),
       suggestions: getContextSuggestions('order_problem'),
     },
     {
@@ -1384,7 +1389,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "problema sa gcash",
       ],
       priority: 9,
-      response: PAYMENT_ISSUE_RESPONSE,
+      response: pickResponse(PAYMENT_ISSUE_RESPONSES),
       suggestions: getContextSuggestions('payment_issue'),
     },
     {
@@ -1430,7 +1435,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "tabang ask",
       ],
       priority: 5,
-      response: CANT_DECIDE_RESPONSE,
+      response: pickResponse(CANT_DECIDE_RESPONSES),
       suggestions: getContextSuggestions('general'),
     },
     {
@@ -1478,7 +1483,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "faq",
       ],
       priority: 5,
-      response: WHAT_TO_ASK_RESPONSE,
+      response: pickResponse(WHAT_TO_ASK_RESPONSES),
       suggestions: getContextSuggestions('general'),
     },
     {
@@ -1526,7 +1531,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "gusto ko mangutana",
       ],
       priority: 6,
-      response: HAVE_QUESTION_RESPONSE,
+      response: pickResponse(HAVE_QUESTION_RESPONSES),
       suggestions: getContextSuggestions('general'),
     },
     {
@@ -1571,7 +1576,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "hello",
       ],
       priority: 2,
-      response: GREETING_RESPONSE,
+      response: pickResponse(GREETING_RESPONSES),
       suggestions: getContextSuggestions('greetings'),
     },
     {
@@ -1605,7 +1610,7 @@ export function getMerchandiseResponse(userInput: string): ChatResponse {
         "unsa imong gibuhat",
       ],
       priority: 1,
-      response: HOW_ARE_YOU_RESPONSE,
+      response: pickResponse(HOW_ARE_YOU_RESPONSES),
       suggestions: getContextSuggestions('greetings'),
     },
   ];
